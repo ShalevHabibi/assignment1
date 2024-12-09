@@ -17,7 +17,7 @@ public class Ex1Main {
             num1 = sc.next();
             if (!num1.equals("quit")) {
                 // add your code here
-
+                  
                 /////////////////////
             }
         }
