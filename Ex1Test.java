@@ -34,14 +34,81 @@ public class Ex1Test {
                 assertFalse(not_ok);
             }
         }
+
         @Test
         void int2NumberTest() {
-           // implement this test
+           // Test basic conversion to binary
+        assertEquals("1011", Ex1.int2Number(11, 2)); // 11 in decimal -> "1011" in binary
+        assertEquals("1010", Ex1.int2Number(10, 2)); // 10 in decimal -> "1010" in binary
+
+        // Test conversion to base 16 (hexadecimal)
+        assertEquals("A", Ex1.int2Number(10, 16)); // 10 in decimal -> "A" in hex
+        assertEquals("F", Ex1.int2Number(15, 16)); // 15 in decimal -> "F" in hex
+
+        // Test lower boundary (base 2)
+        assertEquals("0", Ex1.int2Number(0, 2)); // 0 in decimal -> "0" in binary
+
+        // Test upper boundary (base 16)
+        assertEquals("A0", Ex1.int2Number(160, 16)); // 160 in decimal -> "A0" in hex
+
+        // Test invalid base
+        assertEquals("", Ex1.int2Number(10, 1)); // Invalid base
+        assertEquals("", Ex1.int2Number(10, 17)); // Invalid base
+
+
         }
+
         @Test
         void maxIndexTest() {
-            // implement this test
+             // Array of valid and invalid numbers
+        String[] numbers = {
+            "1011b2",  // 11 in decimal
+            "123bA",   // 1*10 + 2*16 = 18 in decimal
+            "EFb16",   // 14*16 + 15 = 239 in decimal
+            "A0b16",   // 160 in decimal
+            "notValidb2" // Invalid
+        };
+
+        // Testing maxIndex, ignoring invalid numbers
+        int maxIndex = Ex1.maxIndex(numbers);
+        assertEquals(2, maxIndex); // "EFb16" (239 in decimal) should be the largest value
+
+
+        // Case where all inputs are invalid
+        assertEquals(-1, Ex1.maxIndex(new String[] {"invalid1", "invalid2"})); // All invalid
+    
         }
 
         // Add additional test functions - test as much as you can.
+
+        @Test
+        void equalsTest() {
+            String num1 = "1011b2"; // 11 in decimal
+            String num2 = "1011b2"; // 11 in decimal
+            String num3 = "123bA";  // 18 in decimal
+    
+            assertTrue(Ex1.equals(num1, num2)); // Equal numbers
+            assertFalse(Ex1.equals(num1, num3)); // Different numbers
+
+            // Test null values
+            assertFalse(Ex1.equals(null, "1011b2"));
+            assertFalse(Ex1.equals("1011b2", ""));
+        }
+
+        // Test handling of special characters in inputs
+    @Test
+    void specialCharacterTest() {
+        assertFalse(Ex1.isNumber("!@b2")); // Special characters
+        assertFalse(Ex1.isNumber("123$bA")); // Special characters in valid string
+    }
+
+    
+
+        // Edge test case for negative or invalid inputs
+    @Test
+    void negativeNumberTest() {
+        assertEquals(-1, Ex1.number2Int("123b-2")); // Invalid base (-2)
+        assertEquals(-1, Ex1.number2Int("123b17"));  // Invalid base (17)
+    }
+
     }

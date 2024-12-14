@@ -100,26 +100,32 @@ public class Ex1 {
          * @return a String representing a number (in base) equals to num, or an empty String (in case of wrong input).
          */
         public static String int2Number(int num, int base) {
-//            String ans = "";
-            // add your code here
             if (num < 0 || base < 2 || base > 16) {
                 return ""; // Invalid input
             }
 
-            StringBuilder result = new StringBuilder();
-            do {
-                int remainder = num % base;
-                if (remainder < 10) {
-                    result.append((char) ('0' + remainder)); // Append digit
-                } else {
-                    result.append((char) ('A' + (remainder - 10))); // Append letter
-                }
-                num /= base;
-            } while (num > 0);
+            // Special case for zero
+            if (num == 0) {
+                return "0";  // For 0, just return "0"
+            }
 
-            return result.reverse().toString(); // Reverse the result
-            ////////////////////
-//            return ans;
+            StringBuilder result = new StringBuilder();
+            
+            // Convert number to the given base
+            while (num > 0) {
+                int remainder = num % base;
+                
+                if (remainder < 10) {
+                    result.append((char) ('0' + remainder)); // For values 0-9, append digits
+                } else {
+                    result.append((char) ('A' + (remainder - 10))); // For values 10-15, append letters A-F
+                }
+                
+                num /= base;
+            }
+
+            // Reverse the result because we've built the number backwards
+            return result.reverse().toString();
         }
 
         /**
@@ -129,14 +135,12 @@ public class Ex1 {
          * @return true iff the two numbers have the same values.
          */
         public static boolean equals(String n1, String n2) {
-//            boolean ans = true;
-            // add your code here
+
             int value1 = number2Int(n1);
             int value2 = number2Int(n2);
 
             return value1 != -1 && value1 == value2; // Both numbers must be valid and equal
-            ////////////////////
-//            return ans;
+          
         }
 
         /**
@@ -148,8 +152,6 @@ public class Ex1 {
          *
          */
         public static int maxIndex(String[] arr) {
-//            int ans = 0;
-            // add your code here
             int maxIdx = -1;
             int maxValue = Integer.MIN_VALUE;
 
@@ -161,8 +163,7 @@ public class Ex1 {
                 }
             }
             return maxIdx;
-            ////////////////////
-//            return ans;
+        
         }
 
 }
