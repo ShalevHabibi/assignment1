@@ -1,6 +1,9 @@
-# assignment1
+# assignment1 
+Full name: Shalev habibi
+I.D- 206541393
+im was in miluim and talking with boaz about that i will late with the submission, please It shouldn't affect the grade thank you.
 Ex1 Project
-This is a simple project that deals with number conversions between different bases and checks if a number is valid in a specific base.
+This is a project that deals with number conversions between different bases and checks if a number is valid in a specific base.
 
 Features
 Convert Numbers: Convert numbers between different bases (e.g., from binary to decimal or hexadecimal).
